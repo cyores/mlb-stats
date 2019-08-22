@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const StyledHome = styled.div``;
+// components
+import List from "../Components/List";
+import Card from "../Components/Card";
+
+const StyledHome = styled.div`
+    margin-top: 2%;
+`;
 
 class Home extends Component {
     state = {};
@@ -28,13 +34,24 @@ class Home extends Component {
     render() {
         return (
             <StyledHome>
-                <h3>All Teams</h3>
-                {this.state.teams.map(team => (
-                    <React.Fragment key={team.id}>
-                        <Link to={`/team/${team.id}`}>{team.name}</Link>
-                        <br />
-                    </React.Fragment>
-                ))}
+                <div className="container">
+                    <h1 className="fancy-underline">All Teams</h1>
+                    <List>
+                        {this.state.teams.map(team => (
+                            <Card
+                                key={team.id}
+                                imagesrc={`https://www.mlbstatic.com/team-logos/${
+                                    team.id
+                                }.svg`}
+                                title={team.name}
+                                link={`/team/${team.id}`}
+                                linkText={"View Team"}
+                            >
+                                <p>{team.division.name}</p>
+                            </Card>
+                        ))}
+                    </List>
+                </div>
             </StyledHome>
         );
     }

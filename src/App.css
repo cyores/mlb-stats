@@ -1,0 +1,30 @@
+body {
+    background: rgb(233, 232, 232);
+}
+.container {
+    max-width: 1200px;
+}
+
+/* fancy underline */
+.fancy-underline {
+    text-align: center;
+    position: relative;
+    display: inline-block;
+}
+.fancy-underline:after {
+    content: "";
+    display: block;
+    position: absolute;
+    background-color: rgba(29, 45, 92, 0.9);
+    height: 10px;
+    width: 105%;
+    left: 50%;
+    bottom: 3px;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+/* utils */
+.text-center {
+    text-align: center;
+}

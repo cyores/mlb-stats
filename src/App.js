@@ -8,11 +8,14 @@ import Home from "./pages/Home";
 import Team from "./pages/Team";
 import Player from "./pages/Player";
 
+// components
+import Navbar from "./Components/Navbar";
+
 function App() {
     return (
         <Router>
             <React.Fragment>
-                {/* <Home /> */}
+                <Navbar />
                 <Route exact path="/" component={Home} />
                 <Route exact path="/team" component={Team} />
                 <Route exact path="/team/:id" component={Team} />
