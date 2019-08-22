@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // components
 import Hero from "../Components/Hero";
 import List from "../Components/List";
-import Card from "../Components/Card";
+import PlayerCard from "../Components/PlayerCard";
 
 const StyledTeam = styled.div``;
 
@@ -79,21 +79,18 @@ class Team extends Component {
                     <h2 className="fancy-underline">Roster</h2>
                     <List>
                         {this.state.roster.map(player => (
-                            <Card
+                            <PlayerCard
                                 key={player.person.id}
                                 imagesrc={`https://securea.mlb.com/mlb/images/players/head_shot/${
                                     player.person.id
                                 }.jpg`}
-                                title={player.person.fullName}
+                                name={player.person.fullName}
+                                position={player.position.abbreviation}
+                                status={player.status.description}
                                 link={`/player/${player.person.id}`}
                                 linkText={"View Player"}
                             >
-                                <p>
-                                    {player.position.name}, (
-                                    {player.position.abbreviation})
-                                </p>
-                                <p>{player.status.description}</p>
-                            </Card>
+                            </PlayerCard>
                         ))}
                     </List>
                 </div>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledNavbar = styled.nav`
-    background: #1D2D5C;
+    background: #1EAEDB;
     padding: 2rem;
 `;
 

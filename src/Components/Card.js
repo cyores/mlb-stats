@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const StyledCard = styled.div`
     position: relative;
     padding: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     background: #fff;
     border-radius: 1rem;
     width: 190px;
