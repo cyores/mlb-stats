@@ -26,9 +26,6 @@ const StyledFooter = styled.div`
 
 class Card extends Component {
     state = {};
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
@@ -40,16 +37,14 @@ class Card extends Component {
                 </div>
                 <div className="row">
                     <div className="column">
-                        <h5 style={{marginBottom: 0}}>{this.props.title}</h5>
+                        <h5 style={{ marginBottom: 0 }}>{this.props.title}</h5>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="column">
-                        {this.props.children}
-                    </div>
+                    <div className="column">{this.props.children}</div>
                 </div>
 
-                <br></br>
+                <br />
 
                 <StyledFooter>
                     <Link className="button u-full-width" to={this.props.link}>
