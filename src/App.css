@@ -9,9 +9,13 @@ body {
     border-color: #000;
 }
 .button.button-primary:hover,
-.button.button-primary:focus  {
+.button.button-primary:focus {
     background-color: #222;
     border-color: #222;
+}
+table > tbody > tr > td,
+table > thead > tr > th {
+    text-align: center;
 }
 
 /* fancy underline */

@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { stat } from "fs";
 
-const StyledPlayerStats = styled.div``;
+// components
+import StatContainer from "./StatContainer";
+import TableFielding from "./TableFielding";
+import TableHitting from "./TableHitting";
+import TablePitching from "./TablePitching";
+import List from "./List";
+
+const StyledPlayerStats = styled.div`
+    text-align: center;
+    & > h2 {
+        margin-bottom: 5rem;
+    }
+`;
 
 class PlayerStats extends Component {
     state = {};
@@ -12,13 +23,21 @@ class PlayerStats extends Component {
                 <h2 className="fancy-underline">Player Stats</h2>
                 {this.props.stats.map((stat, index) => (
                     <div key={index}>
-                        <h3>{stat.group.displayName}</h3>
-                        {stat.splits.map((split, index) => (
-                            <div key={index}>
-                                <h4>{split.season}</h4>
-                                <p><b>Team: </b>{split.team.name}</p>
-                            </div>
-                        ))}
+                        {/* {stat.splits.map((split, index) => ( */}
+                        <div key={index}>
+                            <StatContainer statType={stat.group.displayName}>
+                                {stat.group.displayName === "fielding" ? (
+                                    <TableFielding split={stat.splits} />
+                                ) : null}
+                                {stat.group.displayName === "hitting" ? (
+                                    <TableHitting split={stat.splits} />
+                                ) : null}
+                                {stat.group.displayName === "pitching" ? (
+                                    <TablePitching split={stat.splits} />
+                                ) : null}
+                            </StatContainer>
+                        </div>
+                        {/* ))} */}
                     </div>
                 ))}
             </StyledPlayerStats>
