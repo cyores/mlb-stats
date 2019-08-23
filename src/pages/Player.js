@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 // components
 import Hero from "../Components/Hero";
+import PlayerStats from "../Components/PlayerStats";
 
 const StyledPlayer = styled.div`
     min-height: 75vh;
@@ -45,6 +46,7 @@ class Player extends Component {
 
     render() {
         const player = this.state.player;
+        const stats = this.state.stats;
         const position = this.state.position;
         const pitchHand = this.state.pitchHand;
         const batSide = this.state.batSide;
@@ -122,6 +124,7 @@ class Player extends Component {
                         </div>
                     </div>
                 </Hero>
+                <PlayerStats stats={stats} />
             </StyledPlayer>
         );
     }
