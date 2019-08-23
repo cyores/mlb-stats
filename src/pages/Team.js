@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 // components
 import Hero from "../Components/Hero";
 import List from "../Components/List";
 import PlayerCard from "../Components/PlayerCard";
 
-const StyledTeam = styled.div``;
+const StyledTeam = styled.div`
+    min-height: 75vh;
+`;
 
 class Team extends Component {
     state = {};
@@ -89,8 +90,7 @@ class Team extends Component {
                                 status={player.status.description}
                                 link={`/player/${player.person.id}`}
                                 linkText={"View Player"}
-                            >
-                            </PlayerCard>
+                            />
                         ))}
                     </List>
                 </div>

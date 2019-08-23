@@ -10,6 +10,7 @@ import Player from "./pages/Player";
 
 // components
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
                 <Route exact path="/team/:id" component={Team} />
                 <Route exact path="/player" component={Player} />
                 <Route exact path="/player/:id" component={Player} />
+                <Footer />
             </React.Fragment>
         </Router>
     );

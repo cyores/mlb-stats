@@ -4,7 +4,9 @@ import styled from "styled-components";
 // components
 import Hero from "../Components/Hero";
 
-const StyledPlayer = styled.div``;
+const StyledPlayer = styled.div`
+    min-height: 75vh;
+`;
 
 class Player extends Component {
     state = {};

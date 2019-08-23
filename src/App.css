@@ -4,6 +4,15 @@ body {
 .container {
     max-width: 1200px;
 }
+.button.button-primary {
+    background-color: #000;
+    border-color: #000;
+}
+.button.button-primary:hover,
+.button.button-primary:focus  {
+    background-color: #222;
+    border-color: #222;
+}
 
 /* fancy underline */
 .fancy-underline {
@@ -15,7 +24,7 @@ body {
     content: "";
     display: block;
     position: absolute;
-    background-color: rgba(30, 175, 219, 0.9);
+    background-color: rgba(0, 0, 0, 0.75);
     height: 10px;
     width: 105%;
     left: 50%;

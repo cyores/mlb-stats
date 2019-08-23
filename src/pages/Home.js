@@ -7,6 +7,7 @@ import Card from "../Components/Card";
 
 const StyledHome = styled.div`
     margin-top: 2%;
+    min-height: 75vh;
 `;
 
 class Home extends Component {
