@@ -53,7 +53,7 @@ class Team extends Component {
             <StyledTeam>
                 <Hero
                     title={this.state.team.name}
-                    shortTitle={this.state.team.abbreviation}
+                    shortTitle={`(${this.state.team.abbreviation})`}
                     subtitle={this.state.division.name}
                     leftImagesrc={`https://www.mlbstatic.com/team-logos/${
                         this.state.team.id

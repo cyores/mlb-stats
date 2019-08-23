@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+// components
+import Hero from "../Components/Hero";
+
 const StyledPlayer = styled.div``;
 
 class Player extends Component {
@@ -9,39 +12,111 @@ class Player extends Component {
         super(props);
         this.state = {
             player: "",
+            position: {},
+            pitchHand: {},
+            batSide: {},
             stats: []
         };
     }
 
     componentDidMount() {
         const personid = this.props.match.params.id;
-        // fetch(`https://statsapi.mlb.com/api/v1/people/${personid}`)
-        //     .then(results => {
-        //         return results.json();
-        //     })
-        //     .then(data => {
-        //         console.log('player', data.people[0]);
-        //         this.setState({ person: data.person });
-        //     });
 
-        fetch(`https://statsapi.mlb.com/api/v1/people/${personid}?hydrate=stats(group=[hitting,pitching,fielding],type=[yearByYear])`)
+        fetch(
+            `https://statsapi.mlb.com/api/v1/people/${personid}?hydrate=stats(group=[hitting,pitching,fielding],type=[yearByYear])`
+        )
             .then(results => {
                 return results.json();
             })
             .then(data => {
-                console.log('player', data.people[0]);
-                console.log('stats', data.people[0].stats);
-                this.setState({ player: data.people[0], stats: data.people[0].stats });
+                console.log("player", data.people[0]);
+                console.log("stats", data.people[0].stats);
+                this.setState({
+                    player: data.people[0],
+                    pitchHand: data.people[0].pitchHand,
+                    batSide: data.people[0].batSide,
+                    position: data.people[0].primaryPosition,
+                    stats: data.people[0].stats
+                });
             });
     }
 
     render() {
         const player = this.state.player;
+        const position = this.state.position;
+        const pitchHand = this.state.pitchHand;
+        const batSide = this.state.batSide;
         return (
             <StyledPlayer>
-                <h2>{player.fullFMLName}</h2>
-                <p>{player.birthCity}, {player.birthCountry}</p>
-                <p>{player.birthDate}</p>
+                <Hero
+                    title={player.fullFMLName}
+                    shortTitle={`#${player.primaryNumber}`}
+                    subtitle={position.name}
+                    leftImagesrc={`https://securea.mlb.com/mlb/images/players/head_shot/${
+                        player.id
+                    }.jpg`}
+                >
+                    <div className="row">
+                        <div className="six columns text-left">
+                            <div className="row">
+                                <span>
+                                    <b>Hometown: </b>
+                                    {player.birthCity},{" "}
+                                    {player.birthStateProvince},{" "}
+                                    {player.birthCountry}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Birthday: </b> {player.birthDate}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Age: </b> {player.currentAge}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>MLB Debut: </b> {player.mlbDebutDate}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Draft Year: </b> {player.draftYear}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="six columns text-left">
+                            <div className="row">
+                                <span>
+                                    <b>Gender: </b>
+                                    {player.gender}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Height: </b> {player.height}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Weight: </b> {player.weight}lbs
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Pitch Hand: </b> {pitchHand.description}
+                                </span>
+                            </div>
+                            <div className="row">
+                                <span>
+                                    <b>Bat Side: </b> {batSide.description}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </Hero>
             </StyledPlayer>
         );
     }

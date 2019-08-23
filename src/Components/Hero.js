@@ -25,7 +25,7 @@ class Hero extends Component {
                     </div>
                     <div className="four columns">
                         <h1>
-                            {this.props.title} ({this.props.shortTitle})
+                            {this.props.title} {this.props.shortTitle}
                         </h1>
                         <h4>{this.props.subtitle}</h4>
                         {this.props.children}
