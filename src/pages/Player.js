@@ -54,6 +54,9 @@ class Player extends Component {
                     title={player.fullFMLName}
                     shortTitle={`#${player.primaryNumber}`}
                     subtitle={position.name}
+                    bgImagesrc={`https://securea.mlb.com/images/players/action_shots/${
+                        player.id
+                    }.jpg`}
                     leftImagesrc={`https://securea.mlb.com/mlb/images/players/head_shot/${
                         player.id
                     }.jpg`}
