@@ -11,6 +11,7 @@ const StyledNavbar = styled.nav`
 const NavbarItem = styled.div`
     display: inline;
     padding: 2rem;
+
     & > * {
         text-decoration: none;
         color: #fff;
@@ -18,6 +19,14 @@ const NavbarItem = styled.div`
     }
     & > *:hover {
         color: #ddd;
+    }
+
+    transition: 0.1s all ease-in-out;
+`;
+
+const RecentsWrapper = styled.span`
+    @media (max-width: 768px) {
+        display: none;
     }
 `;
 
@@ -28,9 +37,34 @@ class Navbar extends Component {
         return (
             <StyledNavbar>
                 <div className="container">
-                    <NavbarItem>
+                    <NavbarItem style={{ borderRight: "2px solid white" }}>
                         <Link to="/">Home</Link>
                     </NavbarItem>
+                    <RecentsWrapper>
+                        <div
+                            style={{
+                                display: "inline",
+                                color: "#fff",
+                                padding: "2rem"
+                            }}
+                        >
+                            <span style={{ fontSize: "2.5rem" }}>&#8250;</span>
+                        </div>
+                        {this.props.recents.map((recent, index) =>
+                            recent ? (
+                                <NavbarItem key={index}>
+                                    <Link
+                                        to={{
+                                            pathname: recent.pathname,
+                                            state: recent.text
+                                        }}
+                                    >
+                                        {recent.text}
+                                    </Link>
+                                </NavbarItem>
+                            ) : null
+                        )}
+                    </RecentsWrapper>
                 </div>
             </StyledNavbar>
         );

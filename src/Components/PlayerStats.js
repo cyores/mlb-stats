@@ -6,7 +6,6 @@ import StatContainer from "./StatContainer";
 import TableFielding from "./TableFielding";
 import TableHitting from "./TableHitting";
 import TablePitching from "./TablePitching";
-import List from "./List";
 
 const StyledPlayerStats = styled.div`
     text-align: center;

@@ -13,7 +13,7 @@ const StyledPlayerCard = styled.div`
     width: 213px;
     height: 320px;
     background-size: cover;
-    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 `;
 
 const StyledFooter = styled.div`
@@ -33,9 +33,10 @@ class PlayerCard extends Component {
                      url(${this.props.imagesrc})`
                 }}
             >
-                <h5>{this.props.name} ({this.props.position})</h5>
+                <h5>
+                    {this.props.name} ({this.props.position})
+                </h5>
                 <StyledFooter>
-
                     <div className="row">
                         <div className="column">{this.props.children}</div>
                     </div>
@@ -44,7 +45,10 @@ class PlayerCard extends Component {
 
                     <Link
                         className="button button-primary u-full-width"
-                        to={this.props.link}
+                        to={{
+                            pathname: this.props.link,
+                            state: this.props.name
+                        }}
                     >
                         {this.props.linkText}
                     </Link>

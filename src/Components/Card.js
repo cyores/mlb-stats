@@ -9,7 +9,7 @@ const StyledCard = styled.div`
     background: #fff;
     border-radius: 1rem;
     width: 190px;
-    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 `;
 
 const StyledImg = styled.img`
@@ -48,7 +48,13 @@ class Card extends Component {
                 <br />
 
                 <StyledFooter>
-                    <Link className="button u-full-width" to={this.props.link}>
+                    <Link
+                        className="button u-full-width"
+                        to={{
+                            pathname: this.props.link,
+                            state: this.props.title
+                        }}
+                    >
                         {this.props.linkText}
                     </Link>
                 </StyledFooter>
