@@ -25,16 +25,18 @@ class PlayerStats extends Component {
             graphWidth: 700,
             graphHeight: 500
         };
-        // this.calcCGGP = this.calcCGGP.bind(this);
     }
     componentDidMount() {
         // games played per stat (hitting, fielding, pitching)
         let gpps = [];
+        // range factor per game per year
         let rfpgpy = [];
+        // temp object to help build rfpgpy
         let temp = {};
         this.props.stats.forEach((stat, index) => {
             gpps.push({ item: stat.group.displayName, frequency: 0 });
             stat.splits.forEach(split => {
+                // gpps
                 if (split.stat.gamesPlayed) {
                     gpps[index].frequency += split.stat.gamesPlayed;
                 } else if (split.stat.games) {
@@ -63,6 +65,7 @@ class PlayerStats extends Component {
             });
         });
 
+        // size the graphs according to screen width
         let width = 700;
         let height = 500;
         if (window.innerWidth < 768) {

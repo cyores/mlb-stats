@@ -7,7 +7,7 @@ const StyledTable = styled.div`
 
 class StatsTable extends Component {
     render() {
-        // keys and headings are optional. if not provided,
+        // Keys and headings are optional. If not provided,
         // the given data will simply loop through and display
         // all keys with their headings as is
         const { splits, keys, headings } = this.props;

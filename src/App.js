@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import logo from './logo.svg';
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -24,7 +23,6 @@ class App extends Component {
     }
     componentDidMount() {
         this.state.routerRef.current.history.listen((location, action) => {
-            console.log("route changed", location, action);
             if (action === "PUSH" && location.state) {
                 let recents = this.state.recents;
                 let found = false;

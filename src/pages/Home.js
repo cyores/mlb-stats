@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import loading from "../images/loading.svg";
-import hh from "../images/homeHeader.jpg";
+import homeHeader from "../images/homeHeader.jpg";
 
 // components
 import List from "../Components/List";
 import Card from "../Components/Card";
 
 const StyledHome = styled.div`
-    // margin-top: 2%;
     min-height: 75vh;
 `;
 
-const StyledHeader = styled.div` 
-    background: url(${hh});
+const StyledHeader = styled.div`
+    background: url(${homeHeader});
     background-size: cover;
     background-position: bottom;
     margin-bottom: 3rem;
@@ -38,7 +37,6 @@ class Home extends Component {
                 return results.json();
             })
             .then(data => {
-                console.log(data.teams);
                 this.setState({ teams: data.teams, doneLoading: true });
             });
     }
@@ -67,7 +65,7 @@ class Home extends Component {
     render() {
         return (
             <StyledHome>
-                <StyledHeader/>
+                <StyledHeader />
                 <div className="container">
                     <h1 className="fancy-underline">All Teams</h1>
                     <div

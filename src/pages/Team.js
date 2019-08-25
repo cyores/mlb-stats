@@ -33,7 +33,6 @@ class Team extends Component {
                 return results.json();
             })
             .then(data => {
-                console.log("team", data.teams[0]);
                 const team = data.teams[0];
                 this.setState({
                     team: team,
@@ -48,7 +47,6 @@ class Team extends Component {
                 return results.json();
             })
             .then(data => {
-                console.log("roster", data.roster);
                 this.setState({ roster: data.roster });
             });
     }
