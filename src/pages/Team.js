@@ -20,8 +20,10 @@ class Team extends Component {
             division: {},
             venue: {},
             springLeague: {},
-            roster: null
+            roster: null,
+            sortType: ""
         };
+        this.sort = this.sort.bind(this);
     }
 
     componentDidMount() {
@@ -50,6 +52,20 @@ class Team extends Component {
                 this.setState({ roster: data.roster });
             });
     }
+
+    sort(type) {
+        let roster = this.state.roster;
+
+        roster.sort(function(a, b) {
+            if (a.person.fullName > b.person.fullName) return 1;
+            if (a.person.fullName < b.person.fullName) return -1;
+            return 0;
+        });
+        if (type === "Alphabetical (Desc)") roster.reverse();
+
+        this.setState({ roster: roster, sortType: type });
+    }
+
     render() {
         return (
             <StyledTeam>
@@ -82,12 +98,39 @@ class Team extends Component {
                     <React.Fragment>
                         <br />
                         <div style={{ textAlign: "center" }}>
-                            <img src={loading} />
+                            <img src={loading} alt="loading" />
                         </div>
                     </React.Fragment>
                 )}
                 <div className="container">
                     <h2 className="fancy-underline">Roster</h2>
+                    <div
+                        style={{
+                            backgroundColor: "white",
+                            padding: "1rem",
+                            borderRadius: "1rem",
+                            marginBottom: "1rem"
+                        }}
+                    >
+                        <List>
+                            <h5 style={{ margin: 0 }}>Sort By</h5>
+                            <button
+                                style={{ margin: 0 }}
+                                className="button button-primary"
+                                onClick={() => this.sort("Alphabetical (Asc)")}
+                            >
+                                Alphabetical (Asc)
+                            </button>
+                            <button
+                                style={{ margin: 0 }}
+                                className="button button-primary"
+                                onClick={() => this.sort("Alphabetical (Desc)")}
+                            >
+                                Alphabetical (Desc)
+                            </button>
+                        </List>
+                    </div>
+                    <h5>{this.state.sortType}</h5>
                     {this.state.roster ? (
                         <List>
                             {this.state.roster.map(player => (
@@ -108,7 +151,7 @@ class Team extends Component {
                         <React.Fragment>
                             <br />
                             <div style={{ textAlign: "center" }}>
-                                <img src={loading} />
+                                <img src={loading} alt="loading" />
                             </div>
                         </React.Fragment>
                     )}

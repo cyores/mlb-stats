@@ -129,7 +129,7 @@ class Player extends Component {
                         </div>
                     </Hero>
                 ) : (
-                    <img src={loading} />
+                    <img src={loading} alt="loading"/>
                 )}
                 {stats ? <PlayerStats stats={stats} /> : null}
             </StyledPlayer>
