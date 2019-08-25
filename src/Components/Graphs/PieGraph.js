@@ -1,7 +1,6 @@
 import React from "react";
 import { Pie } from "@vx/shape";
 import { Group } from "@vx/group";
-import { Text } from "@vx/text";
 
 const labelFill = "#000000";
 
@@ -28,18 +27,18 @@ export default ({ width, height, margin, idata, title }) => {
     return (
         <svg width={width} height={height}>
             <rect rx={14} width={width} height={height} fill="#000" />
-            <Text
+            <text
                 style={{
                     fontSize: "3rem",
                     fill: "#fff",
                     textAnchor: "middle"
                 }}
                 x={width / 2}
-                y={20}
-                verticalAnchor="start"
+                y={40}
+                verticalanchor="start"
             >
                 {title}
-            </Text>
+            </text>
             <Group top={centerY - margin.top + 20} left={centerX}>
                 <Pie
                     data={idata}

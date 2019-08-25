@@ -2,22 +2,18 @@ import React from "react";
 import { Bar, Line } from "@vx/shape";
 import { Group } from "@vx/group";
 import { Grid } from "@vx/grid";
-import { letterFrequency } from "@vx/mock-data";
 import { scaleBand, scaleLinear } from "@vx/scale";
-import { Text } from "@vx/text";
-import { AxisLeft, AxisRight, AxisBottom } from "@vx/axis";
-
-const data = letterFrequency.slice(5);
+import { AxisLeft, AxisBottom } from "@vx/axis";
 
 const barColors = [
-    "#fff24d",
-    "#df6363",
     "#63dfdf",
-    "#ec00ff",
     "#ff8a33",
+    "#df6363",
     "#b3f542",
     "#f542b3",
+    "#fff24d",
     "#11a0f3",
+    "#ec00ff",
     "#f3112f"
 ];
 
@@ -35,8 +31,8 @@ function numTicksForWidth(width) {
 }
 
 // accessors
-const x = d => d.letter;
-const y = d => +d.frequency * 100;
+const x = d => d.x;
+const y = d => d.y;
 
 export default ({
     width,
@@ -47,6 +43,7 @@ export default ({
     leftLabel,
     bottomLabel
 }) => {
+    const data = idata;
     // bounds
     const xMax = width - margin.left * 2;
     const yMax = height - 120;
@@ -65,18 +62,18 @@ export default ({
     return (
         <svg width={width} height={height}>
             <rect width={width} height={height} fill={"#000"} rx={14} />
-            <Text
+            <text
                 style={{
                     fontSize: "3rem",
                     fill: "#fff",
                     textAnchor: "middle"
                 }}
                 x={width / 2}
-                y={20}
-                verticalAnchor="start"
+                y={40}
+                verticalanchor="start"
             >
                 {title}
-            </Text>
+            </text>
             <Grid
                 xScale={xScale}
                 yScale={yScale}
@@ -94,14 +91,14 @@ export default ({
                             ? parseInt(Math.random() * barColors.length - 1)
                             : i;
                     const barFill = barColors[index];
-                    const letter = x(d);
+                    const xdata = x(d);
                     const barWidth = xScale.bandwidth();
                     const barHeight = yMax - yScale(y(d));
-                    const barX = xScale(letter);
+                    const barX = xScale(xdata);
                     const barY = yMax - barHeight;
                     return (
                         <Bar
-                            key={`bar-${letter}`}
+                            key={`bar-${xdata}-${i}`}
                             x={barX}
                             y={barY}
                             width={barWidth}

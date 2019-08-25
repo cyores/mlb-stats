@@ -22,13 +22,16 @@ class PlayerStats extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gpps: null
+            gpps: null,
+            rfpgpy: null
         };
         // this.calcCGGP = this.calcCGGP.bind(this);
     }
     componentDidMount() {
         // games played per stat (hitting, fielding, pitching)
         let gpps = [];
+        let rfpgpy = [];
+        let temp = {};
         this.props.stats.forEach((stat, index) => {
             gpps.push({ item: stat.group.displayName, frequency: 0 });
             stat.splits.forEach(split => {
@@ -37,11 +40,34 @@ class PlayerStats extends Component {
                 } else if (split.stat.games) {
                     gpps[index].frequency += split.stat.games;
                 }
+                // RFPG per year
+                if (stat.group.displayName === "fielding") {
+                    if (!(split.season in temp)) {
+                        temp[split.season] = parseFloat(
+                            split.stat.rangeFactorPerGame
+                        );
+                    } else {
+                        temp[split.season] =
+                            (temp[split.season] +
+                                parseFloat(split.stat.rangeFactorPerGame)) /
+                            2;
+                    }
+                }
+            });
+        });
+
+        console.log("temp", temp);
+
+        Object.keys(temp).forEach(key => {
+            rfpgpy.push({
+                x: parseInt(key),
+                y: parseFloat(temp[key])
             });
         });
         console.log("gpps", gpps);
-        this.setState({ gpps: gpps });
-        // return gpps;
+        console.log("rfpgpy", rfpgpy);
+
+        this.setState({ gpps: gpps, rfpgpy: rfpgpy });
     }
     render() {
         return (
@@ -72,19 +98,22 @@ class PlayerStats extends Component {
                             margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
                         />
                     ) : null}
-                    <BarGraph
-                        title={"Bar Graph Title"}
-                        leftLabel={"Left Label"}
-                        bottomLabel={"Bottom Label"}
-                        width={700}
-                        height={500}
-                        margin={{
-                            top: 60,
-                            left: 75,
-                            bottom: 60,
-                            right: 75
-                        }}
-                    />
+                    {this.state.rfpgpy ? (
+                        <BarGraph
+                            title={"RFPG Per Year"}
+                            leftLabel={"Range Factor Per Game"}
+                            bottomLabel={"Year"}
+                            idata={this.state.rfpgpy}
+                            width={700}
+                            height={500}
+                            margin={{
+                                top: 60,
+                                left: 75,
+                                bottom: 60,
+                                right: 75
+                            }}
+                        />
+                    ) : null}
                 </List>
             </StyledPlayerStats>
         );
