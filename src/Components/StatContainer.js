@@ -4,6 +4,9 @@ import styled from "styled-components";
 const StyledStatContainer = styled.div`
     margin: 2rem;
     text-transform: capitalize;
+    & > div > .toverflow {
+        overflow-x: scroll;
+    }
     @media (max-width: 1024px) {
         & > div > .toverflow {
             overflow-x: scroll;
