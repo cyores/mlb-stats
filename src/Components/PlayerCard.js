@@ -14,12 +14,18 @@ const StyledPlayerCard = styled.div`
     height: 320px;
     background-size: cover;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    @media(max-width: 768px) {
+        width: 250px;
+    }
 `;
 
 const StyledFooter = styled.div`
     position: absolute;
     bottom: 1rem;
     width: inherit;
+    @media(max-width: 768px) {
+        width: 250px;
+    }
 `;
 
 class PlayerCard extends Component {

@@ -10,6 +10,9 @@ const StyledCard = styled.div`
     border-radius: 1rem;
     width: 190px;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    @media(max-width: 768px) {
+        width: 250px;
+    }
 `;
 
 const StyledImg = styled.img`
@@ -23,6 +26,9 @@ const StyledFooter = styled.div`
     position: absolute;
     bottom: 1rem;
     width: 190px;
+    @media(max-width: 768px) {
+        width: 250px;
+    }
 `;
 
 class Card extends Component {

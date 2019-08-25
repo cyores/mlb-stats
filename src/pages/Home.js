@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import loading from "../images/loading.svg";
+import hh from "../images/homeHeader.jpg";
 
 // components
 import List from "../Components/List";
 import Card from "../Components/Card";
 
 const StyledHome = styled.div`
-    margin-top: 2%;
+    // margin-top: 2%;
     min-height: 75vh;
+`;
+
+const StyledHeader = styled.div` 
+    background: url(${hh});
+    background-size: cover;
+    background-position: bottom;
+    margin-bottom: 3rem;
+    width: 100%;
+    height: 25vh;
 `;
 
 class Home extends Component {
@@ -57,6 +67,7 @@ class Home extends Component {
     render() {
         return (
             <StyledHome>
+                <StyledHeader/>
                 <div className="container">
                     <h1 className="fancy-underline">All Teams</h1>
                     <div
