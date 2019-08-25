@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import loading from "../images/loading.svg"
 
 // components
 import List from "../Components/List";
@@ -15,8 +16,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
-            teams: []
+            teams: null
         };
     }
 
@@ -37,19 +37,23 @@ class Home extends Component {
                 <div className="container">
                     <h1 className="fancy-underline">All Teams</h1>
                     <List>
-                        {this.state.teams.map(team => (
-                            <Card
-                                key={team.id}
-                                imagesrc={`https://www.mlbstatic.com/team-logos/${
-                                    team.id
-                                }.svg`}
-                                title={team.name}
-                                link={`/team/${team.id}`}
-                                linkText={"View Team"}
-                            >
-                                <p>{team.division.name}</p>
-                            </Card>
-                        ))}
+                        {this.state.teams ? (
+                            this.state.teams.map(team => (
+                                <Card
+                                    key={team.id}
+                                    imagesrc={`https://www.mlbstatic.com/team-logos/${
+                                        team.id
+                                    }.svg`}
+                                    title={team.name}
+                                    link={`/team/${team.id}`}
+                                    linkText={"View Team"}
+                                >
+                                    <p>{team.division.name}</p>
+                                </Card>
+                            ))
+                        ) : (
+                            <img src={loading} />
+                        )}
                     </List>
                 </div>
             </StyledHome>

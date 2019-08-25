@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import loading from "../images/loading.svg";
 
 // components
 import Hero from "../Components/Hero";
@@ -15,11 +16,11 @@ class Team extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            team: {},
+            team: null,
             division: {},
             venue: {},
             springLeague: {},
-            roster: []
+            roster: null
         };
     }
 
@@ -52,47 +53,65 @@ class Team extends Component {
     render() {
         return (
             <StyledTeam>
-                <Hero
-                    title={this.state.team.name}
-                    shortTitle={`(${this.state.team.abbreviation})`}
-                    subtitle={this.state.division.name}
-                    leftImagesrc={`https://www.mlbstatic.com/team-logos/${
-                        this.state.team.id
-                    }.svg`}
-                    rightImagesrc={`	
+                {this.state.team ? (
+                    <Hero
+                        title={this.state.team.name}
+                        shortTitle={`(${this.state.team.abbreviation})`}
+                        subtitle={this.state.division.name}
+                        leftImagesrc={`https://www.mlbstatic.com/team-logos/${
+                            this.state.team.id
+                        }.svg`}
+                        rightImagesrc={`	
                     https://prod-gameday.mlbstatic.com/responsive-gameday-assets/1.2.0/images/fields/${
                         this.state.venue.id
                     }.svg`}
-                >
-                    <p>
-                        <b>Venue: </b> {this.state.venue.name}
-                    </p>
-                    <p>
-                        <b>First Year of Play: </b>
-                        {this.state.team.firstYearOfPlay}
-                    </p>
-                    <p>
-                        <b>Spring League: </b>
-                        {this.state.springLeague.name}
-                    </p>
-                </Hero>
+                    >
+                        <p>
+                            <b>Venue: </b> {this.state.venue.name}
+                        </p>
+                        <p>
+                            <b>First Year of Play: </b>
+                            {this.state.team.firstYearOfPlay}
+                        </p>
+                        <p>
+                            <b>Spring League: </b>
+                            {this.state.springLeague.name}
+                        </p>
+                    </Hero>
+                ) : (
+                    <React.Fragment>
+                        <br />
+                        <div style={{ textAlign: "center" }}>
+                            <img src={loading} />
+                        </div>
+                    </React.Fragment>
+                )}
                 <div className="container">
                     <h2 className="fancy-underline">Roster</h2>
-                    <List>
-                        {this.state.roster.map(player => (
-                            <PlayerCard
-                                key={player.person.id}
-                                imagesrc={`https://securea.mlb.com/mlb/images/players/head_shot/${
-                                    player.person.id
-                                }.jpg`}
-                                name={player.person.fullName}
-                                position={player.position.abbreviation}
-                                status={player.status.description}
-                                link={`/player/${player.person.id}`}
-                                linkText={"View Player"}
-                            />
-                        ))}
-                    </List>
+                    {this.state.roster ? (
+                        <List>
+                            {this.state.roster.map(player => (
+                                <PlayerCard
+                                    key={player.person.id}
+                                    imagesrc={`https://securea.mlb.com/mlb/images/players/head_shot/${
+                                        player.person.id
+                                    }.jpg`}
+                                    name={player.person.fullName}
+                                    position={player.position.abbreviation}
+                                    status={player.status.description}
+                                    link={`/player/${player.person.id}`}
+                                    linkText={"View Player"}
+                                />
+                            ))}
+                        </List>
+                    ) : (
+                        <React.Fragment>
+                            <br />
+                            <div style={{ textAlign: "center" }}>
+                                <img src={loading} />
+                            </div>
+                        </React.Fragment>
+                    )}
                 </div>
             </StyledTeam>
         );
