@@ -9,6 +9,7 @@ import Team from "./pages/Team";
 import Player from "./pages/Player";
 
 // components
+import ScrollToTop from "./Components/ScrollToTop";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 
@@ -50,25 +51,30 @@ class App extends Component {
     render() {
         return (
             <Router ref={this.state.routerRef}>
-                <React.Fragment>
-                    <Navbar recents={this.state.recents} />
-                    <Route exact path="/" component={Home} />
-                    <Route
-                        exact
-                        path="/team/:id"
-                        render={props => (
-                            <Team key={props.match.params.id} {...props} />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/player/:id"
-                        render={props => (
-                            <Player key={props.match.params.id} {...props} />
-                        )}
-                    />
-                    <Footer />
-                </React.Fragment>
+                <ScrollToTop>
+                    <React.Fragment>
+                        <Navbar recents={this.state.recents} />
+                        <Route exact path="/" component={Home} />
+                        <Route
+                            exact
+                            path="/team/:id"
+                            render={props => (
+                                <Team key={props.match.params.id} {...props} />
+                            )}
+                        />
+                        <Route
+                            exact
+                            path="/player/:id"
+                            render={props => (
+                                <Player
+                                    key={props.match.params.id}
+                                    {...props}
+                                />
+                            )}
+                        />
+                        <Footer />
+                    </React.Fragment>
+                </ScrollToTop>
             </Router>
         );
     }
