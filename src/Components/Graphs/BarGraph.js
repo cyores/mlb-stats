@@ -104,13 +104,6 @@ export default ({
                             width={barWidth}
                             height={barHeight}
                             fill={barFill}
-                            // onClick={event => {
-                            //     alert(
-                            //         `clicked: ${JSON.stringify(
-                            //             Object.values(d)
-                            //         )}`
-                            //     );
-                            // }}
                         />
                     );
                 })}

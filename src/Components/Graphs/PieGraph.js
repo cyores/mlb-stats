@@ -22,7 +22,6 @@ export default ({ width, height, margin, idata, title }) => {
     const radius = Math.min(width, height) / 2;
     const centerY = height / 2;
     const centerX = width / 2;
-    console.log("idata", idata);
 
     return (
         <svg width={width} height={height}>
@@ -61,7 +60,7 @@ export default ({ width, height, margin, idata, title }) => {
                                 arc
                             );
                             return (
-                                <g key={`letters-${arc.data.label}-${i}`}>
+                                <g key={`items-${arc.data.label}-${i}`}>
                                     <path
                                         d={pie.path(arc)}
                                         fill={pieFill}

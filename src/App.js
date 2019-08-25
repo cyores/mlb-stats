@@ -24,7 +24,6 @@ class App extends Component {
     }
     componentDidMount() {
         this.state.routerRef.current.history.listen((location, action) => {
-            console.log("route changed", location, action);
             if (action === "PUSH" && location.state) {
                 let recents = this.state.recents;
                 let found = false;

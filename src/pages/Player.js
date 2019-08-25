@@ -34,8 +34,6 @@ class Player extends Component {
                 return results.json();
             })
             .then(data => {
-                console.log("player", data.people[0]);
-                console.log("stats", data.people[0].stats);
                 this.setState({
                     player: data.people[0],
                     pitchHand: data.people[0].pitchHand,
@@ -47,14 +45,10 @@ class Player extends Component {
     }
 
     render() {
-        const player = this.state.player;
-        const stats = this.state.stats;
-        const position = this.state.position;
-        const pitchHand = this.state.pitchHand;
-        const batSide = this.state.batSide;
+        const { player, stats, position, pitchHand, batSide } = this.state;
         return (
             <StyledPlayer>
-                {this.state.player ? (
+                {player ? (
                     <Hero
                         title={player.fullFMLName}
                         shortTitle={`#${player.primaryNumber}`}
@@ -129,7 +123,7 @@ class Player extends Component {
                         </div>
                     </Hero>
                 ) : (
-                    <img src={loading} alt="loading"/>
+                    <img src={loading} alt="loading" />
                 )}
                 {stats ? <PlayerStats stats={stats} /> : null}
             </StyledPlayer>

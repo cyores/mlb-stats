@@ -1,3 +1,4 @@
+// Ensures pages scroll to top when react-router changes pages
 import { Component } from "react";
 import { withRouter } from "react-router-dom";
 
