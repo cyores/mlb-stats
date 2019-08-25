@@ -6,7 +6,9 @@ import StatContainer from "./StatContainer";
 import TableFielding from "./TableFielding";
 import TableHitting from "./TableHitting";
 import TablePitching from "./TablePitching";
-import PieGraph from "./PieGraph";
+import PieGraph from "./Graphs/PieGraph";
+import BarGraph from "./Graphs/BarGraph";
+import List from "./List";
 
 const StyledPlayerStats = styled.div`
     text-align: center;
@@ -60,15 +62,30 @@ class PlayerStats extends Component {
                         </StatContainer>
                     </div>
                 ))}
-                {this.state.gpps ? (
-                    <PieGraph
-                        title={"Games Played at Each Position"}
-                        idata={this.state.gpps}
-                        width={500}
+                <List>
+                    {this.state.gpps ? (
+                        <PieGraph
+                            title={"Games Played at Each Position"}
+                            idata={this.state.gpps}
+                            width={700}
+                            height={500}
+                            margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                        />
+                    ) : null}
+                    <BarGraph
+                        title={"Bar Graph Title"}
+                        leftLabel={"Left Label"}
+                        bottomLabel={"Bottom Label"}
+                        width={700}
                         height={500}
-                        margin={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                        margin={{
+                            top: 60,
+                            left: 75,
+                            bottom: 60,
+                            right: 75
+                        }}
                     />
-                ) : null}
+                </List>
             </StyledPlayerStats>
         );
     }

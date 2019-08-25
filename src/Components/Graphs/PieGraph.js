@@ -5,7 +5,17 @@ import { Text } from "@vx/text";
 
 const labelFill = "#000000";
 
-const pieColors = ["#fff24d", "#df6363", "#63dfdf", "#ec00ff", "#ff8a33"];
+const pieColors = [
+    "#fff24d",
+    "#df6363",
+    "#63dfdf",
+    "#ec00ff",
+    "#ff8a33",
+    "#b3f542",
+    "#f542b3",
+    "#11a0f3",
+    "#f3112f"
+];
 
 const frequency = d => d.frequency;
 
@@ -41,8 +51,13 @@ export default ({ width, height, margin, idata, title }) => {
                 >
                     {pie => {
                         return pie.arcs.map((arc, i) => {
-                            const opacity = 1 / (i + 1);
-                            const pieFill = pieColors[i];
+                            let index =
+                                i >= pieColors.length
+                                    ? parseInt(
+                                          Math.random() * pieColors.length - 1
+                                      )
+                                    : i;
+                            const pieFill = pieColors[index];
                             const [centroidX, centroidY] = pie.path.centroid(
                                 arc
                             );
