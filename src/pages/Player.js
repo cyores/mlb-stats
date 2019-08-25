@@ -18,7 +18,7 @@ class Player extends Component {
             position: {},
             pitchHand: {},
             batSide: {},
-            stats: []
+            stats: null
         };
     }
 
@@ -124,7 +124,8 @@ class Player extends Component {
                         </div>
                     </div>
                 </Hero>
-                <PlayerStats stats={stats} />
+                {stats ? <PlayerStats stats={stats}/> : null}
+                {/* <PlayerStats stats={stats} /> */}
             </StyledPlayer>
         );
     }
