@@ -1,6 +1,17 @@
 # MLBStats
-Blue Jays Analytics -  Team and Player Stats
+### Blue Jays Analytics -  Team and Player Stats
 
+This web application displays MLB team roster and player statistics. It is built using React and the freely available [MLB API](https://statsapi.mlb.com). The project is hosted at [https://mlbstats.netlify.com/](https://mlbstats.netlify.com/).
+
+Build Status: [![Netlify Status](https://api.netlify.com/api/v1/badges/abffe834-dd8b-4886-93fe-cc594120e334/deploy-status)](https://app.netlify.com/sites/mlbstats/deploys)
+
+## How to run the project
+1. Install [Node.js](https://nodejs.org/en/) version 11 or higher
+2. Clone the repository
+3. Run `npm install` in the project directory
+4. Run `npm start` to serve the app on [http://localhost:3000](http://localhost:3000)
+
+<hr>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
