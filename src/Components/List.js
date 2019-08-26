@@ -6,6 +6,12 @@ const StyledList = styled.div`
     flex-flow: row wrap;
     justify-content: space-around;
     padding: 0.1rem;
+    @media (max-width: 768px) {
+        & > * {
+            width: 100%;
+            margin-bottom: 2rem !important;
+        }
+    }
 `;
 
 class List extends Component {
